@@ -1,9 +1,10 @@
 <template>
     <li>
-        <span>
-            <input type="checkbox">
+        <span v-bind:class="{done: todo.completed}">
+            <input type="checkbox" v-on:change="todo.completed = !todo.completed">
             {{ todo.title}}
         </span>
+        <button class="btn_delete">Удалить</button>
     </li>
 </template>
 
@@ -36,4 +37,25 @@ export default {
     input{
       margin-right:1.5em;
     }
+    .done{
+        opacity: .6;
+        text-decoration: line-through;
+    }
+   .btn_delete {
+  
+  
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 20px #f13737 inset, 0 0 0 0 #f13737;
+  letter-spacing: 2px;
+  color: white;
+  transition: .15s ease-in-out;
+}
+.btn_delete:hover {
+  box-shadow: 0 0 10px 0 #f13737 inset, 0 0 10px 4px #f13737;
+  color: #f13737;
+}
 </style>
