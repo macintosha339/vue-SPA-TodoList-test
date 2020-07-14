@@ -4,11 +4,13 @@
             <input type="checkbox" v-on:change="todo.completed = !todo.completed">
             {{ todo.title}}
         </span>
-        <button class="btn_delete">Удалить</button>
+        <button class="btn_delete" @click="openModal">Удалить</button>
+        <Modal v-model="modalOpen"/>
     </li>
 </template>
 
 <script>
+import Modal from './Modal'
 export default {
     props: {
         todo: {
@@ -16,6 +18,19 @@ export default {
             required: true
         },
         index: Number
+    },
+    components: {
+        Modal
+    },
+    data() {
+        return {
+            modalOpen: false
+        }
+    },
+    methods: {
+        openModal() {
+            this.modalOpen= !this.modalOpen;
+        }
     }
 }
 </script>
